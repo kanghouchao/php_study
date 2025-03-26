@@ -1,0 +1,70 @@
+# Git関連
+.git
+.gitignore
+.gitattributes
+
+# Docker関連
+Dockerfile
+.dockerignore
+docker-compose*
+docker-compose.override.yml
+
+.env.example
+
+# エディタ設定
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# 依存関係
+/vendor/
+/node_modules/
+
+# テスト関連
+/tests/
+/test/
+*.test.php
+phpunit.xml
+.phpunit.result.cache
+
+# ドキュメント
+/docs/
+*.md
+!README.md
+LICENSE
+
+# 環境設定
+.env
+.env.*
+!.env.example
+
+# ログファイル
+*.log
+logs/
+error_log
+access_log
+
+# キャッシュ
+*.cache
+.cache/
+*.tmp
+*.temp
+
+# データベース
+*.sqlite
+*.db
+
+# ビルド成果物
+/dist/
+/build/
+*.zip
+*.tar.gz
+
+# その他
+.DS_Store
+Thumbs.db
+*.bak
+*.swp
+*.swo
+*~ 

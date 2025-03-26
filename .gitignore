@@ -1,0 +1,53 @@
+# システムファイル
+.DS_Store
+Thumbs.db
+
+# エディタ設定ファイル
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# 依存関係
+/vendor/
+/node_modules/
+
+# ログファイル
+*.log
+logs/
+error_log
+access_log
+
+# 環境設定ファイル
+.env
+.env.*
+!.env.example
+
+# キャッシュファイル
+*.cache
+.cache/
+*.tmp
+*.temp
+
+# データベースファイル
+*.sqlite
+*.db
+
+# Docker関連
+docker-compose.override.yml
+
+# ビルド成果物
+/dist/
+/build/
+*.zip
+*.tar.gz
+
+# テストカバレッジ
+/coverage/
+.phpunit.result.cache
+
+# その他
+*.bak
+*.swp
+*.swo
+*~ 

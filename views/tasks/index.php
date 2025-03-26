@@ -1,27 +1,3 @@
-<?php
-require_once 'config.php';
-
-// 新規タスクの追加処理
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['task'])) {
-    $task = trim($_POST['task']);
-    if (!empty($task)) {
-        $stmt = $conn->prepare("INSERT INTO tasks (task, created_at) VALUES (?, NOW())");
-        $stmt->execute([$task]);
-    }
-}
-
-// タスクの削除処理
-if (isset($_GET['delete'])) {
-    $id = (int)$_GET['delete'];
-    $stmt = $conn->prepare("DELETE FROM tasks WHERE id = ?");
-    $stmt->execute([$id]);
-}
-
-// すべてのタスクの取得
-$stmt = $conn->query("SELECT * FROM tasks ORDER BY created_at DESC");
-$tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -35,7 +11,7 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <h1 class="mb-4">タスクリスト</h1>
         
         <!-- 新規タスク追加フォーム -->
-        <form method="POST" class="mb-4">
+        <form method="POST" action="/tasks" class="mb-4">
             <div class="input-group">
                 <input type="text" name="task" class="form-control" placeholder="新しいタスクを追加..." required>
                 <button type="submit" class="btn btn-primary">追加</button>
@@ -49,7 +25,7 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <span><?php echo htmlspecialchars($task['task']); ?></span>
                     <div>
                         <small class="text-muted me-3"><?php echo date('Y-m-d H:i', strtotime($task['created_at'])); ?></small>
-                        <a href="?delete=<?php echo $task['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('このタスクを削除してもよろしいですか？')">削除</a>
+                        <button class="btn btn-danger btn-sm delete-task" data-id="<?php echo $task['id']; ?>">削除</button>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -57,5 +33,25 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('.delete-task').forEach(button => {
+            button.addEventListener('click', function() {
+                if (confirm('このタスクを削除してもよろしいですか？')) {
+                    const id = this.dataset.id;
+                    fetch(`/tasks/${id}`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (response.ok) {
+                            location.reload();
+                        } else {
+                            alert(data.message);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html> 
