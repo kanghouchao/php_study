@@ -1,16 +1,16 @@
 FROM php:8.2-apache
 
-# 安装PDO MySQL扩展
+# PDO MySQL拡張機能のインストール
 RUN docker-php-ext-install pdo pdo_mysql
 
-# 启用Apache的rewrite模块
+# Apacheのrewriteモジュールを有効化
 RUN a2enmod rewrite
 
-# 设置工作目录
+# 作業ディレクトリの設定
 WORKDIR /var/www/html
 
-# 复制项目文件
+# プロジェクトファイルのコピー
 COPY . /var/www/html/
 
-# 设置适当的权限
+# 適切な権限の設定
 RUN chown -R www-data:www-data /var/www/html 

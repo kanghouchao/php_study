@@ -1,77 +1,77 @@
-# PHP待办事项清单
+# PHPタスクリスト
 
-这是一个简单的PHP待办事项清单应用，适合PHP初学者学习。
+これはPHP初心者向けのシンプルなタスクリストアプリケーションです。
 
-## 功能特点
+## 主な機能
 
-- 添加新的待办事项
-- 查看所有待办事项
-- 删除待办事项
-- 显示创建时间
+- 新しいタスクの追加
+- すべてのタスクの表示
+- タスクの削除
+- 作成時間の表示
 
-## 安装步骤
+## インストール手順
 
-### 使用Docker（推荐）
+### Dockerを使用する場合（推奨）
 
-1. 确保你的系统已安装Docker和Docker Compose
-2. 在项目根目录下运行：
+1. DockerとDocker Composeがインストールされていることを確認してください
+2. プロジェクトのルートディレクトリで以下のコマンドを実行：
    ```bash
    docker-compose up -d
    ```
-3. 访问：`http://localhost:8000`
+3. ブラウザでアクセス：`http://localhost:8000`
 
-### 手动安装
+### 手動インストール
 
-1. 确保你的系统已安装PHP和MySQL
-2. 克隆或下载此项目到你的本地环境
-3. 创建数据库：
-   - 登录MySQL
-   - 运行 `init.sql` 文件中的SQL语句
-4. 配置数据库连接：
-   - 打开 `config.php` 文件
-   - 修改数据库连接信息（主机名、用户名、密码）
-5. 启动PHP内置服务器：
+1. PHPとMySQLがインストールされていることを確認してください
+2. プロジェクトをクローンまたはダウンロード
+3. データベースの作成：
+   - MySQLにログイン
+   - `init.sql`ファイルのSQL文を実行
+4. データベース接続の設定：
+   - `config.php`ファイルを開く
+   - データベース接続情報を編集（ホスト名、ユーザー名、パスワード）
+5. PHPの組み込みサーバーを起動：
    ```bash
    php -S localhost:8000
    ```
-6. 在浏览器中访问：`http://localhost:8000`
+6. ブラウザでアクセス：`http://localhost:8000`
 
-## Docker相关命令
+## Docker関連コマンド
 
-- 启动服务：
+- サービスの起動：
   ```bash
   docker-compose up -d
   ```
 
-- 停止服务：
+- サービスの停止：
   ```bash
   docker-compose down
   ```
 
-- 查看日志：
+- ログの確認：
   ```bash
   docker-compose logs -f
   ```
 
-- 重建服务：
+- サービスの再構築：
   ```bash
   docker-compose up -d --build
   ```
 
-## 学习要点
+## 学習ポイント
 
-- PHP基础语法
-- 表单处理
-- PDO数据库操作
-- 基本的CRUD操作
-- HTML和CSS基础
-- Bootstrap框架使用
+- PHPの基本構文
+- フォーム処理
+- PDOデータベース操作
+- 基本的なCRUD操作
+- HTMLとCSSの基礎
+- Bootstrapフレームワークの使用
 
-## 技术栈
+## 使用技術
 
 - PHP 8.2
 - MySQL 8.0
 - Apache
 - Bootstrap 5
-- PDO数据库连接
+- PDOデータベース接続
 - Docker & Docker Compose 

@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  # PHP服务
+  # PHPサービス
   php:
     build: .
     ports:
@@ -16,7 +16,7 @@ services:
       - DB_PASS=todo_password
       - DB_NAME=todo_app
 
-  # MySQL服务
+  # MySQLサービス
   mysql:
     image: mysql:8.0
     ports:

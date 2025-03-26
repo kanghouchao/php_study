@@ -1,7 +1,7 @@
 <?php
 require_once 'config.php';
 
-// 处理添加新任务
+// 新規タスクの追加処理
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['task'])) {
     $task = trim($_POST['task']);
     if (!empty($task)) {
@@ -10,46 +10,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['task'])) {
     }
 }
 
-// 处理删除任务
+// タスクの削除処理
 if (isset($_GET['delete'])) {
     $id = (int)$_GET['delete'];
     $stmt = $conn->prepare("DELETE FROM tasks WHERE id = ?");
     $stmt->execute([$id]);
 }
 
-// 获取所有任务
+// すべてのタスクの取得
 $stmt = $conn->query("SELECT * FROM tasks ORDER BY created_at DESC");
 $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>待办事项清单</title>
+    <title>タスクリスト</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="mb-4">待办事项清单</h1>
+        <h1 class="mb-4">タスクリスト</h1>
         
-        <!-- 添加新任务表单 -->
+        <!-- 新規タスク追加フォーム -->
         <form method="POST" class="mb-4">
             <div class="input-group">
-                <input type="text" name="task" class="form-control" placeholder="添加新任务..." required>
-                <button type="submit" class="btn btn-primary">添加</button>
+                <input type="text" name="task" class="form-control" placeholder="新しいタスクを追加..." required>
+                <button type="submit" class="btn btn-primary">追加</button>
             </div>
         </form>
 
-        <!-- 任务列表 -->
+        <!-- タスクリスト -->
         <div class="list-group">
             <?php foreach ($tasks as $task): ?>
                 <div class="list-group-item d-flex justify-content-between align-items-center">
                     <span><?php echo htmlspecialchars($task['task']); ?></span>
                     <div>
                         <small class="text-muted me-3"><?php echo date('Y-m-d H:i', strtotime($task['created_at'])); ?></small>
-                        <a href="?delete=<?php echo $task['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('确定要删除这个任务吗？')">删除</a>
+                        <a href="?delete=<?php echo $task['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('このタスクを削除してもよろしいですか？')">削除</a>
                     </div>
                 </div>
             <?php endforeach; ?>
